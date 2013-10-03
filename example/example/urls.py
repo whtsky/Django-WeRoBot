@@ -1,10 +1,10 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 from django_werobot import make_view
-from robot import robot
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
+from wechat_robot.robot import robot
 
 urlpatterns = patterns('',
     # Examples:

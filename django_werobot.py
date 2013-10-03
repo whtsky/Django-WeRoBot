@@ -33,9 +33,9 @@ def make_view(robot):
         "RoBot should be an BaseRoBot instance."
 
     def werobot_view(request):
-        timestamp = request.GET["timestamp"]
-        nonce = request.GET["nonce"]
-        signature = request.GET["signature"]
+        timestamp = request.GET.get("timestamp", "")
+        nonce = request.GET.get("nonce", "")
+        signature = request.GET.get("signature", "")
         if not robot.check_signature(
             timestamp=timestamp,
             nonce=nonce,
