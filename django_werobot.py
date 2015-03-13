@@ -19,6 +19,7 @@ __all__ = ['make_view']
 
 from werobot.robot import BaseRoBot
 from werobot.parser import parse_user_msg
+from werobot.reply import create_reply
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotAllowed
 
 
@@ -49,7 +50,7 @@ def make_view(robot):
             message = parse_user_msg(body)
             reply = robot.get_reply(message)
             return HttpResponse(
-                reply,
+                create_reply(reply, message=message),
                 content_type="application/xml;charset=utf-8"
             )
         return HttpResponseNotAllowed(['GET', 'POST'])
