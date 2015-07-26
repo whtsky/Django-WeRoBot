@@ -14,13 +14,14 @@ Links
 * `documentation <https://django-werobot.readthedocs.org/>`_
 """
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 __all__ = ['make_view']
 
 from werobot.robot import BaseRoBot
 from werobot.parser import parse_user_msg
 from werobot.reply import create_reply
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotAllowed
+from django.views.decorators.csrf import csrf_exempt
 
 
 def make_view(robot):
@@ -33,6 +34,7 @@ def make_view(robot):
     assert isinstance(robot, BaseRoBot),\
         "RoBot should be an BaseRoBot instance."
 
+    @csrf_exempt
     def werobot_view(request):
         timestamp = request.GET.get("timestamp", "")
         nonce = request.GET.get("nonce", "")
@@ -44,7 +46,7 @@ def make_view(robot):
         ):
             return HttpResponseForbidden()
         if request.method == "GET":
-            return HttpResponse(request.GET["echostr"])
+            return HttpResponse(request.GET.get("echostr", ""))
         elif request.method == "POST":
             body = request.body
             message = parse_user_msg(body)
