@@ -4,7 +4,7 @@ Django-WeRoBot
 
 Adds WeRoBot support to Django.
 
-:copyright: (c) 2013 by whtsky.
+:copyright: (c) 2015 by whtsky.
 :license: BSD, see LICENSE for more details.
 
 Links
@@ -17,7 +17,7 @@ from setuptools import setup
 
 setup(
     name='Django-WeRoBot',
-    version='0.1.0',
+    version='0.1.1',
     url='https://github.com/whtsky/Django-WeRoBot',
     license='BSD',
     author='whtsky',
